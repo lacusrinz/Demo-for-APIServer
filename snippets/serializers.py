@@ -41,11 +41,11 @@ class SnippetSerializer(serializers.HyperlinkedModelSerializer):
 
 	class Meta:
 		model = Snippet
-		field = ('id', 'highlight', 'owner', 'title', 'code', 'linenos', 'language', 'style')
+		field = ('url', 'highlight', 'owner', 'title', 'code', 'linenos', 'language', 'style')
 		
-class UserSerializer(serializers.ModelSerializer):
-	snippets = serializers.PrimaryKeyRelatedField(many=True)
+class UserSerializer(serializers.HyperlinkedModelSerializer):
+	snippets = serializers.HyperlinkedRelatedField(many=True, view_name='snippet-detail')
 
 	class Meta:
 		model = User
-		field = ('id', 'username', 'snippets')
+		field = ('url', 'username', 'snippets')
