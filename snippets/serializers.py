@@ -20,13 +20,28 @@ from django.contrib.auth.models import User
 # 			instance.style = attrs['style']
 # 			return instance
 # 		return Snippet(**attrs)
+#------------------------------------------------------------------------------------
+# class SnippetSerializer(serializers.ModelSerializer):
+# 	owner = serializers.Field(source='owner.username')
 
-class SnippetSerializer(serializers.ModelSerializer):
+# 	class Meta:
+# 		model = Snippet
+# 		field = ('id', 'owner', 'title', 'code', 'linenos', 'language', 'style')
+		
+# class UserSerializer(serializers.ModelSerializer):
+# 	snippets = serializers.PrimaryKeyRelatedField(many=True)
+
+# 	class Meta:
+# 		model = User
+# 		field = ('id', 'username', 'snippets')
+
+class SnippetSerializer(serializers.HyperlinkedModelSerializer):
 	owner = serializers.Field(source='owner.username')
+	highlight = serializers.HyperlinkedIdentityField(view_name='snippet-highlight', format='html')
 
 	class Meta:
 		model = Snippet
-		field = ('id', 'owner', 'title', 'code', 'linenos', 'language', 'style')
+		field = ('id', 'highlight', 'owner', 'title', 'code', 'linenos', 'language', 'style')
 		
 class UserSerializer(serializers.ModelSerializer):
 	snippets = serializers.PrimaryKeyRelatedField(many=True)
