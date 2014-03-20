@@ -22,7 +22,7 @@ class Snippet(models.Model):
 							default='friendly',
 							max_length=100)
 	owner = models.ForeignKey('auth.User', related_name='snippets')
-	highlighted = models.TextField(blank=True)
+	highlighted = models.TextField()
 
 	class Meta:
 		ordering = ('created',)
