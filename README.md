@@ -1,7 +1,9 @@
 Demo-for-APIServer
 ==================
-required:
-python
-Django
-django-rest-framework
-pygments
+required:<br>
+python<br>
+Django<br>
+mysql<br>
+mysqldb<br>
+django-rest-framework<br>
+pygments<br>
