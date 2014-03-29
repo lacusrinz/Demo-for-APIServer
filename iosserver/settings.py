@@ -149,6 +149,7 @@ INSTALLED_APPS = (
     'moneyManager',
     'rest_framework',
     'snippets',
+    'relations',
 )
 
 # A sample logging configuration. The only tangible logging

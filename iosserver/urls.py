@@ -40,6 +40,7 @@ urlpatterns = patterns('',
     (r'^login/',include('login.urls')),
     (r'^money/',include('moneyManager.urls')),
     (r'^snippets/', include('snippets.urls')),
+    (r'^',include('relations.urls')),
     #rest framework urls
     (r'^', include(router.urls)),
     (r'^api-auth/', include('rest_framework.urls', namespace='rest_framework')),
