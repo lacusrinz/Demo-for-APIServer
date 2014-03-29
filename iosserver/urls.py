@@ -3,23 +3,17 @@ from views import *
 from django.contrib import admin
 from django.contrib.auth.models import User, Group
 from rest_framework import viewsets, routers
+from snippets import views
 
 # Uncomment the next two lines to enable the admin:
 # from django.contrib import admin
 admin.autodiscover()
 
-# ViewSets define the view behavior.
-class UserViewSet(viewsets.ModelViewSet):
-    model = User
-
-class GroupViewSet(viewsets.ModelViewSet):
-    model = Group
-
 
 # Routers provide an easy way of automatically determining the URL conf.
 router = routers.DefaultRouter()
-router.register(r'users', UserViewSet)
-router.register(r'groups', GroupViewSet)
+router.register(r'users', views.UserViewSet)
+router.register(r'snippets', views.SnippetViewSet)
 
 urlpatterns = patterns('',
     # Examples:
@@ -39,7 +33,7 @@ urlpatterns = patterns('',
     (r'^rating/', include('Rating.urls')),
     (r'^login/',include('login.urls')),
     (r'^money/',include('moneyManager.urls')),
-    (r'^snippets/', include('snippets.urls')),
+    # (r'^snippets/', include('snippets.urls')),
     (r'^',include('relations.urls')),
     #rest framework urls
     (r'^', include(router.urls)),
