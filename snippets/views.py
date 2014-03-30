@@ -105,6 +105,8 @@ from rest_framework.response import Response
 from rest_framework import viewsets
 from rest_framework.decorators import link
 
+from snippets.filter import SnippetFilter
+
 
 # class SnippetList(generics.ListCreateAPIView):
 # 	queryset = Snippet.objects.all()
@@ -128,7 +130,7 @@ from rest_framework.decorators import link
 # 	queryset = User.objects.all()
 # 	serializer_class = UserSerializer
 
-# class SnippetHighlight(generics.GenericAPIView):
+# class SnippetHighlight(genericstitle.GenericAPIView):
 # 	queryset = Snippet.objects.all()
 # 	renderer_classes = (renderers.StaticHTMLRenderer,)
 
@@ -145,6 +147,7 @@ class SnippetViewSet(viewsets.ModelViewSet):
 	serializer_class = SnippetSerializer
 	permission_classes = (permissions.IsAuthenticatedOrReadOnly,
 							IsOwnerOrReadOnly,)
+	filter_class = SnippetFilter
 	
 	@link(renderer_classes = [renderers.StaticHTMLRenderer])
 	def highlight(self, request, *args, **kwargs):
