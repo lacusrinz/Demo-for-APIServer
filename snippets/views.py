@@ -151,12 +151,11 @@ class UserViewSet(viewsets.ReadOnlyModelViewSet):
 
 class SnippetViewSet(viewsets.ModelViewSet):
 	authentication_classes = (SessionAuthentication, BasicAuthentication)
-	permission_classes = (IsAuthenticated,)
 
 	queryset = Snippet.objects.all()
 	serializer_class = SnippetSerializer
 	permission_classes = (permissions.IsAuthenticatedOrReadOnly,
-							IsOwnerOrReadOnly,)
+							IsOwnerOrReadOnly, IsAuthenticated,)
 	filter_class = SnippetFilter
 	
 	@link(renderer_classes = [renderers.StaticHTMLRenderer])
