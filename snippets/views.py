@@ -107,6 +107,9 @@ from rest_framework.decorators import link
 
 from snippets.filter import SnippetFilter
 
+from rest_framework.authentication import SessionAuthentication, BasicAuthentication
+from rest_framework.permissions import IsAuthenticated
+
 
 # class SnippetList(generics.ListCreateAPIView):
 # 	queryset = Snippet.objects.all()
@@ -138,11 +141,18 @@ from snippets.filter import SnippetFilter
 # 		snippet = self.get_object()
 # 		return Response(snippet.highlighted)
 
+
 class UserViewSet(viewsets.ReadOnlyModelViewSet):
+	authentication_classes = (SessionAuthentication, BasicAuthentication)
+	permission_classes = (IsAuthenticated,)
+
 	queryset = User.objects.all()
 	serializer_class = UserSerializer
 
 class SnippetViewSet(viewsets.ModelViewSet):
+	authentication_classes = (SessionAuthentication, BasicAuthentication)
+	permission_classes = (IsAuthenticated,)
+
 	queryset = Snippet.objects.all()
 	serializer_class = SnippetSerializer
 	permission_classes = (permissions.IsAuthenticatedOrReadOnly,

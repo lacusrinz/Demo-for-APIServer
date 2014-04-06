@@ -118,7 +118,13 @@ REST_FRAMEWORK = {
     'DEFAULT_PERMISSION_CLASSES': [
         'rest_framework.permissions.DjangoModelPermissionsOrAnonReadOnly'
     ],
-    'DEFAULT_FILTER_BACKENDS':('rest_framework.filters.DjangoFilterBackend',)
+    
+    'DEFAULT_FILTER_BACKENDS':('rest_framework.filters.DjangoFilterBackend',),
+
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework.authentication.BasicAuthentication',
+        'rest_framework.authentication.SessionAuthentication',
+    ),
 }
 
 ROOT_URLCONF = 'iosserver.urls'
@@ -151,6 +157,7 @@ INSTALLED_APPS = (
     'rest_framework',
     'snippets',
     'relations',
+    'rest_framework.authtoken',
 )
 
 # A sample logging configuration. The only tangible logging
